@@ -1,5 +1,30 @@
 {
+    "name": "yokenzan/minimal-blade",
+    "description": "Minimal source code to use Laravel Blade template engine.",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "blade",
+        "view"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yokenzan",
+            "email": "31175068+yokenzan@users.noreply.github.com"
+        }
+    ],
     "require": {
         "illuminate/view": "^6.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "MinimalBlade\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     }
 }
