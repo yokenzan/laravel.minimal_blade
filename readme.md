@@ -9,8 +9,26 @@ If you want to know what Laravel view components consist of, please see [Illumin
 
 ## Installation
 
+You can install this repository by `git clone` command.
+
 ```sh
 git clone git://github.com/yokenzan/laravel.minimal_blade.git laravel.minimal_blade
+```
+
+Or, write below text into `composer.json` and execute `composer install`.
+
+```json:composer.json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/yokenzan/laravel.minimal_blade.git"
+        }
+    ],
+    "require": {
+        "yokenzan/minimal-blade": "dev-master"
+    }
+}
 ```
 
 
@@ -19,7 +37,7 @@ git clone git://github.com/yokenzan/laravel.minimal_blade.git laravel.minimal_bl
 
 You can get HTML output from Blade template by executing `MinimalBlade\ViewRenderer::make()`.
 
-To get an instance of `MinimalBlade\ViewRenderer`, you may execute `MinimalBlade\ViewRendererMaker::make()`.
+To get an instance of `MinimalBlade\ViewRenderer`, you can execute `MinimalBlade\ViewRendererMaker::make()`.
 
 ```php
 <?php
@@ -35,14 +53,18 @@ $renderer      = $rendererMaker->make();
 echo $renderer->render('hello', ['message' => 'Hello, World!']);
 ```
 
-Or, also can obtain an instance by executing `MinimalBlade\ViewRendererMaker::makeFromConfig()`.
+Or, also you can obtain an instance by executing `MinimalBlade\ViewRendererMaker::makeFromConfig()`.
 
 ```php
 <?php
 
 require __DIR__ . '/vendor/autoload.php';
 
-$config        = require __DIR__ . '/config/blade.php';
+$config        = [
+    'view_paths'      => ['views', ],
+    'view_extensions' => ['blade.php', ],
+    'cache_path'      => 'cache',
+];
 $rendererMaker = new MinimalBlade\ViewRendererMaker();
 $renderer      = $rendererMaker->makeFromConfig($config);
 

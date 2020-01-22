@@ -77,7 +77,6 @@ class ViewRendererMaker
     }
 
     /**
-    /**
      * Makes ViewRenderer instance from configuration values.
      *
      * @param (string|string[])[] $config
