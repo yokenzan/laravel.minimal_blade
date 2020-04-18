@@ -1,4 +1,4 @@
-# minimal source code to use Laravel Blade template engine
+# Repository to try Laravel Blade template engine
 
 ## About
 
@@ -34,26 +34,9 @@ Or, write below text into `composer.json` and execute `composer install`.
 
 ## How to use
 
+You can get compiled HTML output from Blade template by executing `MinimalBlade\ViewRenderer::make()`.
 
-You can get HTML output from Blade template by executing `MinimalBlade\ViewRenderer::make()`.
-
-To get an instance of `MinimalBlade\ViewRenderer`, you can execute `MinimalBlade\ViewRendererMaker::make()`.
-
-```php
-<?php
-
-require __DIR__ . '/vendor/autoload.php';
-
-$config        = require __DIR__ . '/config/blade.php';
-$rendererMaker = new MinimalBlade\ViewRendererMaker(
-    $config['cache_path'], $config['view_paths'], $config['view_extensions']
-);
-$renderer      = $rendererMaker->make();
-
-echo $renderer->render('hello', ['message' => 'Hello, World!']);
-```
-
-Or, also you can obtain an instance by executing `MinimalBlade\ViewRendererMaker::makeFromConfig()`.
+To get an instance of `MinimalBlade\ViewRenderer`, you can execute `MinimalBlade\ViewRendererMaker::makeFromConfig()`.
 
 ```php
 <?php
@@ -61,14 +44,33 @@ Or, also you can obtain an instance by executing `MinimalBlade\ViewRendererMaker
 require __DIR__ . '/vendor/autoload.php';
 
 $config        = [
-    'view_paths'      => ['views', ],
-    'view_extensions' => ['blade.php', ],
-    'cache_path'      => 'cache',
+    /* directory paths to find Blade view files in */
+    'view_paths'      => ['views'],
+    /* directory path to store compiled view cache files in */
+    'cache_path'      => __DIR__ . '/cache',
+    /* file extensions to be treated as Blade view file (optional) */
+    'view_extensions' => [ 'blade.php'],
 ];
+
 $rendererMaker = new MinimalBlade\ViewRendererMaker();
 $renderer      = $rendererMaker->makeFromConfig($config);
 
 echo $renderer->render('hello', ['message' => 'Hello, World!']);
+```
+
+When execute the PHP code above, you can see output like : 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimal Config To Use Blade Template Engine</title>
+</head>
+<body>
+    <p>Hello, World!</p>
+</body>
+</html>
 ```
 
 ## License
