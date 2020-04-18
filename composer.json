@@ -17,6 +17,12 @@
     "require": {
         "illuminate/view": "^6.11"
     },
+    "require-dev": {
+        "object-calisthenics/phpcs-calisthenics-rules": "^3.7",
+        "sirbrillig/phpcs-variable-analysis": "^2.8",
+        "slevomat/coding-standard": "^6.1",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
     "autoload": {
         "psr-4": {
             "MinimalBlade\\": "src/"
@@ -26,5 +32,10 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
+    },
+    "scripts":{
+        "lint:init": [
+            "vendor/bin/phpcs --config-set installed_paths $(pwd)/vendor/object-calisthenics/phpcs-calisthenics-rules/src,$(pwd)/vendor/slevomat/coding-standard,$(pwd)/vendor/sirbrillig/phpcs-variable-analysis/VariableAnalysis"
+        ]
     }
 }
